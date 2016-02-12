@@ -1,0 +1,105 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.taxjar.com/v2/transactions/orders/R181807170
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - TaxjarRubyGem/1.2.2
+      Authorization:
+      - Bearer taxjar_api_key
+      Connection:
+      - close
+      Host:
+      - api.taxjar.com
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - Cowboy
+      Connection:
+      - close
+      Date:
+      - Fri, 12 Feb 2016 20:22:31 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '72'
+      Vary:
+      - Origin
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 7a0baea6-856c-4f7e-aae2-18d5c0b7b7e6
+      X-Runtime:
+      - '0.121809'
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"error":"Not Found","detail":"The resource was not found","status":404}'
+    http_version: 
+  recorded_at: Fri, 12 Feb 2016 20:22:30 GMT
+- request:
+    method: post
+    uri: https://api.taxjar.com/v2/transactions/orders
+    body:
+      encoding: UTF-8
+      string: '{"transaction_id":"R181807170","transaction_date":"2016-02-12T19:19:5Z","from_state":"TX","from_city":"Austin","from_street":"306
+        E. 3rd Street","from_country":"US","from_zip":"78701","to_country":"US","to_state":"Maryland","to_city":"Bethesda","to_street":"7735
+        Old Georgetown Rd","to_zip":"20814","amount":114.95,"shipping":0,"sales_tax":5,"line_items":[{"id":null,"quantity":2,"production_indetifier":"SPR-00001","product_tax_code":null,"description":"Spree
+        Baseball Jersey","unit_price":19.99,"discount":null,"sales_tax":null},{"id":null,"quantity":3,"production_indetifier":"ROR-00004","product_tax_code":null,"description":"Ruby
+        on Rails Baseball Jersey","unit_price":19.99,"discount":null,"sales_tax":null}]}'
+    headers:
+      User-Agent:
+      - TaxjarRubyGem/1.2.2
+      Authorization:
+      - Bearer taxjar_api_key
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Host:
+      - api.taxjar.com
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - Cowboy
+      Connection:
+      - close
+      Date:
+      - Fri, 12 Feb 2016 20:22:31 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '766'
+      Vary:
+      - Origin
+      Etag:
+      - '"7d25a551e5cf4aba76080d65720cf75b"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 7addc58c-0508-44b9-8b52-b74df66978e2
+      X-Runtime:
+      - '0.466378'
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"order":{"transaction_id":"R181807170","user_id":20328,"transaction_date":"2016-02-12T19:19:05Z","transaction_reference_id":null,"from_country":"US","from_zip":"78701","from_state":"TX","from_city":"AUSTIN","from_street":"306
+        E. 3rd Street","to_country":"US","to_zip":"20814","to_state":"MARYLAND","to_city":"BETHESDA","to_street":"7735
+        Old Georgetown Rd","amount":"114.95","shipping":"0.0","sales_tax":"5.0","line_items":[{"id":1,"quantity":3,"product_identifier":null,"product_tax_code":null,"description":"Ruby
+        on Rails Baseball Jersey","unit_price":"19.99","discount":"0.0","sales_tax":"0.0"},{"id":0,"quantity":2,"product_identifier":null,"product_tax_code":null,"description":"Spree
+        Baseball Jersey","unit_price":"19.99","discount":"0.0","sales_tax":"0.0"}]}}'
+    http_version: 
+  recorded_at: Fri, 12 Feb 2016 20:22:31 GMT
+recorded_with: VCR 2.9.3

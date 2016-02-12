@@ -1,0 +1,39 @@
+{
+  "name": "taxjar",
+  "display": "TaxJar",
+  "description": "Updates TaxJar with orders.",
+  "icon_url": "taxjar.png",
+  "services": [
+    {
+      "name": "add_or_update_order",
+      "path": "/add_or_update_order",
+      "description": "Exports order to TaxJar",
+      "requires": {
+        "parameters": [
+          {
+            "name": "taxjar_api_key",
+            "description": "TaxJar Api Key",
+            "data_type": "string"
+          }
+        ]
+      },
+      "recommends": {
+        "messages": [
+          "order:new",
+          "order:updated",
+          "order:canceled"
+        ],
+        "filters": [
+          {
+            "path": "payload.original.payment_state",
+            "operator": "eq",
+            "value": "paid"
+          }
+        ],
+        "options": {
+          "retries_allowed": true
+        }
+      }
+    }
+  ]
+}
