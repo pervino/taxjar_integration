@@ -5,7 +5,7 @@ class TaxjarEndpoint < EndpointBase::Sinatra::Base
   set :public, 'public'
 
   post '/add_or_update_order' do
-    code, summary = TaxjarIntegration::Order.new(@config, @paylod).add_or_update
+    code, summary = TaxjarIntegration::Order.new(@config, @payload).add_or_update
     result code, summary
   end
 end
