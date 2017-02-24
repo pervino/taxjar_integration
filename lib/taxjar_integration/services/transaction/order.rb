@@ -49,24 +49,24 @@ module TaxjarIntegration
           order_params[:to_street] = order['shipping_address']['address1']
           order_params[:to_zip] = order['shipping_address']['zipcode']
 
-          order_params[:amount] = order['totals']['order']
+          order_params[:amount] = order['totals']['order'] - order['totals']['tax']
           order_params[:shipping] = order['totals']['shipping']
           order_params[:sales_tax] = order['totals']['tax']
 
-          unless false && config[:send_line_items]
-            order_params[:line_items] = order['line_items'].map do |line_item|
-              {
-                  id: line_item['id'],
-                  quantity: line_item['quantity'],
-                  production_indetifier: line_item['sku'],
-                  product_tax_code: line_item['tax_code'],
-                  description: line_item['name'],
-                  unit_price: line_item['price'],
-                  discount: line_item['discount'],
-                  sales_tax: line_item['sales_tax']
-              }
-            end
-          end
+          # if config[:send_line_items]
+          #   order_params[:line_items] = order['line_items'].map do |line_item|
+          #     {
+          #         id: line_item['id'],
+          #         quantity: line_item['quantity'],
+          #         production_indetifier: line_item['sku'],
+          #         product_tax_code: line_item['tax_code'],
+          #         description: line_item['name'],
+          #         unit_price: line_item['price'],
+          #         discount: line_item['discount'],
+          #         sales_tax: line_item['sales_tax']
+          #     }
+          #   end
+          # end
 
           order_params
         end
