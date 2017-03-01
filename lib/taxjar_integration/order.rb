@@ -22,7 +22,7 @@ module TaxjarIntegration
           [500, e.message]
         end
       else
-          [200, "Order transaction #{order.transaction_id} does not exist"]
+          [200, "Order transaction #{@payload.number} does not exist"]
       end
     end
 
