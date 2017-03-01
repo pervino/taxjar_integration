@@ -12,6 +12,19 @@ module TaxjarIntegration
         update
       end
     end
+    
+    def delete
+      if order_exists
+        begin
+          order = order_service.delete
+          [200, "Deleted order transaction #{order.transaction_id}"]
+        rescue Taxjar::Error => e
+          [500, e.message]
+        end
+      else
+          [200, "Order transaction #{order.transaction_id} does not exist"]
+      end
+    end
 
     protected
 
@@ -33,6 +46,18 @@ module TaxjarIntegration
       end
     end
 
+    def order_exists
+      begin
+        order = order_service.show
+      rescue Taxjar::Error::NotFound => e
+        false
+      rescue Taxjar::Error => e
+        false
+      else
+        true
+      end
+    end
+    
     private
 
     def order_service
