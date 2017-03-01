@@ -18,11 +18,34 @@ module TaxjarIntegration
       end
 
       context "when transaction is present" do
-        it "updates the exisintg order transaction" do
+        it "updates the existing order transaction" do
           VCR.use_cassette("order/update") do
             status, message = subject.add_or_update
             expect(status).to eq(200)
             expect(message).to match("Updated order transaction")
+          end
+        end
+      end
+    end
+
+
+    context "delete_order" do
+      context "when transaction isn't present" do
+        it "no action" do
+          VCR.use_cassette("order/delete") do
+            status, message = subject.delete
+            expect(status).to eq(200)
+            expect(message).to match("does not exist")
+          end
+        end
+      end
+
+      context "when transaction is present" do
+        it "deletes the order transaction" do
+          VCR.use_cassette("order/delete") do
+            status, message = subject.delete
+            expect(status).to eq(200)
+            expect(message).to match("Deleted order transaction")
           end
         end
       end

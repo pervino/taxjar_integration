@@ -8,4 +8,9 @@ class TaxjarEndpoint < EndpointBase::Sinatra::Base
     code, summary = TaxjarIntegration::Order.new(@config, @payload).add_or_update
     result code, summary
   end
+
+  post '/delete_order' do
+    code, summary = TaxjarIntegration::Order.new(@config, @payload).delete
+    result code, summary
+  end
 end
