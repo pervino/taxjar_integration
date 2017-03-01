@@ -49,6 +49,7 @@ module TaxjarIntegration
     def order_exists
       begin
         order = order_service.show
+        return !order.nil? && !order.id.nil?
       rescue Taxjar::Error::NotFound => e
         false
       rescue Taxjar::Error => e
